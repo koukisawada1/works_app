@@ -1,0 +1,6 @@
+<div class="image-new">
+	<%= form_for[@image, @post] do |f| %>
+		<%= f.attachment_field :image %>
+		<%= f.submit '追加する' %>
+	<% end %>
+</div>

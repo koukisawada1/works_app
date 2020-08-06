@@ -13,3 +13,394 @@
  *= require_tree .
  *= require_self
  */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: 'Roboto Condensed',sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    width: 100%;
+}
+
+#video {
+    background-size: cover;
+    background-attachment: fixed;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -999;
+    /* fitさせる */
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+}
+.background {
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -10;
+    width: 100%;
+    height: 100%;
+}
+.background p {
+    font-size: 110px;
+    font-family: 'Amatic SC', cursive;
+    color: #FFF;
+    text-align: center;
+    margin: 270px 0;
+}
+.header_background {
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    transition: 0.5s;
+}
+.header {
+    width: 90%;
+    margin: 0 auto;
+}
+.header_container {
+    display: flex;
+}
+.header_logo {
+    display: flex;
+    align-items: center;
+    width: auto;
+    transition: 0.5s;
+}
+.header_container .header_logo a {
+    height: 75px;
+    font-size: 40px;
+    color: #FFF;
+    text-decoration: none;
+    padding-top: 1rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+/* ハンバーガーメニュー */
+#hamburger {
+    /*透明にする*/
+    opacity: 0;
+    position: fixed;
+}
+/*バーガーメニューの移動*/
+label .burger {
+    position: fixed;
+    top: 1.3rem;
+    right: 1rem;
+    z-index: 3;
+    width: 2rem;
+    height: 2rem;
+}
+
+#menu {
+    /*位置を固定*/
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    /*縦並び　nowraop回り込み対策*/
+    flex-flow: column nowrap;
+    /*いちをセンターに*/
+    justify-content: center;
+    /*起点となるところが最初になるように*/
+    align-items: flex-start;
+}
+#menu::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    width: 25rem;
+    background: #b62956;
+    content: "";
+    /*skewX(15deg)角度15度、エンジを傾ける　translate(-100%)左側に寄せておく*/
+    transform: skewX(-15deg) translate(100%);
+    /*移動場所の起点*/
+    transform-origin: bottom left;
+    /*移動にかかる時間*/
+    transition: transform 0.3S;
+}
+/*menuを左にずらす*/
+#menu a {
+    margin: 1.3rem 0;
+    padding: 0.2rem 7.5rem;
+    font-size: 1.5rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: #FFF;
+    text-decoration: none;
+    /*左側に移す　見えないところ*/
+    transform: translateX(200%);
+    /*menu文字の出てくるはやさ*/
+    transition: all 0.15s, transform 0.5s;
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/*ハンバーガーがチェックされたらエンジ色を左から右に持ってくる*/
+#hamburger:checked ~ #menu::before {
+    transform: skewX(-15deg) translateX(0);
+}
+#hamburger:checked ~ #menu a {
+    transform: translateX(0);
+}
+#hamburger:checked ~ .light-dark {
+    background: #000;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.menu-nav-text {
+    font-size: 1.5rem;
+    color: silver;
+    background: #FFF;
+    padding: 10px 130px;
+    position: fixed;
+    top: 650px;
+    right: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+.menu-nav-close {
+    font-size: 1.5rem;
+    color: #b62956;
+    background: #FFF;
+    padding: 10px 130px;
+    position: fixed;
+    top: 650px;
+    right: 0;
+    font-family: 'Times New Roman', Times, serif;
+    display: none;
+}
+.menu-nav-text:hover {
+    background: #b62956;
+    transition: all 0.55s;
+}
+#hamburger:checked + label .burger .menu-nav-text {
+    display: none;
+}
+#hamburger:checked + label .burger .menu-nav-close {
+    display: block;
+}
+
+@media (max-width:959px) {
+    .header {
+        width: 100%;
+    }
+    .header_logo {
+        height: 75px;
+        margin: 0 auto;
+    }
+    .header_container .header_logo img {
+        height: 50px;
+        display: flex;
+        justify-content: center;
+    }
+
+    header .header_background {
+        max-width: 100vw;
+    }
+    .background p {
+    font-size: 100px;
+    }
+
+    /* ハンバーガーメニュー */
+    #hamburger {
+        /*透明にする*/
+        opacity: 0;
+        position: fixed;
+    }
+    /*バーガーメニューの移動*/
+    label .burger {
+        position: fixed;
+        top: 1.3rem;
+        right: 1rem;
+        z-index: 3;
+        width: 2rem;
+        height: 2rem;
+    }
+    /*ラベルの中のバーガーに擬似クラスを作成する*/
+    label .burger::before,
+    label .burger::after,
+    label .burger .bar {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 0.25rem;
+        border-radius: 5px;
+        background: #FFF;
+        /*擬似要素につける*/
+        content: "";
+        transition: 0.5s;
+        display: block;
+    }
+    /*ハンバーガー線の位置の設定*/
+    label .burger::before {
+        top: 0;
+        /*回転させるときの起点を設定*/
+        transform-origin: top left;
+    }
+    label .burger::after {
+        bottom: 0;
+        transform-origin: bottom left;
+    }
+    label .burger .bar {
+        top: 45%;
+    }
+
+    #menu {
+        /*位置を固定*/
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        display: flex;
+        /*縦並び　nowraop回り込み対策*/
+        flex-flow: column nowrap;
+        /*いちをセンターに*/
+        justify-content: center;
+        /*起点となるところが最初になるように*/
+        align-items: flex-start;
+    }
+    #menu::before {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+        width: 25rem;
+        background: #b62956;
+        content: "";
+        /*skewX(15deg)角度15度、エンジを傾ける　translate(-100%)左側に寄せておく*/
+        transform: skewX(-15deg) translate(100%);
+        /*移動場所の起点*/
+        transform-origin: bottom left;
+        /*移動にかかる時間*/
+        transition: transform 0.3S;
+    }
+    /*menuを左にずらす*/
+    #menu a {
+        margin: 1.3rem 0;
+        padding: 0.2rem 6rem;
+        font-size: 1.5rem;
+        font-family: 'Times New Roman', Times, serif;
+        color: #FFF;
+        text-decoration: none;
+        /*左側に移す　見えないところ*/
+        transform: translateX(200%);
+        /*menu文字の出てくるはやさ*/
+        transition: all 0.15s, transform 0.5s;
+        transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    /*バーガーがクリックされたとき上の線と下の線の幅が130％になる*/
+    #hamburger:checked + label .burger::before,
+    #hamburger:checked + label .burger::after {
+        width: 130%;
+    }
+    /*上線を回転させる*/
+    #hamburger:checked + label .burger::before {
+        transform: rotate(45deg);
+    }
+    /*下線を回転させる*/
+    #hamburger:checked + label .burger::after {
+        transform: rotate(-45deg);
+    }
+    /*中線を消す(サイズが０になっている)*/
+    #hamburger:checked + label .burger .bar {
+        transform: scale(0);
+    }
+    /*ハンバーガーがチェックされたらエンジ色を左から右に持ってくる*/
+    #hamburger:checked ~ #menu::before {
+        transform: skewX(-15deg) translateX(0);
+    }
+    #hamburger:checked ~ #menu a {
+        transform: translateX(0);
+    }
+    #hamburger:checked ~ .light-dark {
+        background: #000;
+        opacity: 0.5;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    .menu-nav-text {
+        display: none;
+    }
+    #hamburger:checked + label .burger .menu-nav-close {
+    display: none;
+    }
+
+
+}
+@media (max-width:500px) {
+    /*ラベルの中のバーガーに擬似クラスを作成する*/
+    #menu::before {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+        width: 17rem;
+        background: #b62956;
+        content: "";
+        /*skewX(15deg)角度15度、エンジを傾ける　translate(-100%)左側に寄せておく*/
+        transform: skewX(-15deg) translate(100%);
+        /*移動場所の起点*/
+        transform-origin: bottom left;
+        /*移動にかかる時間*/
+        transition: transform 0.3S;
+    }
+    /*menuを左にずらす*/
+    #menu a {
+        margin: 1.3rem 0;
+        padding: 0.2rem 3rem;
+        font-size: 1.2rem;
+        font-family: 'Times New Roman', Times, serif;
+        color: #FFF;
+        text-decoration: none;
+        /*左側に移す　見えないところ*/
+        transform: translateX(200%);
+        /*menu文字の出てくるはやさ*/
+        transition: all 0.15s, transform 0.5s;
+        transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    /*バーガーがクリックされたとき上の線と下の線の幅が130％になる*/
+    /*ハンバーガーがチェックされたらエンジ色を左から右に持ってくる*/
+    #hamburger:checked ~ #menu::before {
+        transform: skewX(-12deg) translateX(0);
+    }
+    #hamburger:checked ~ #menu a {
+        transform: translateX(0);
+    }
+    #hamburger:checked ~ .light-dark {
+        background: #000;
+        opacity: 0.5;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    #hamburger:checked + label .burger .menu-nav-close {
+        display: none;
+    }
+        .background p {
+        font-size: 60px;
+    }
+}

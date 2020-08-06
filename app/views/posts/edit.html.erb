@@ -1,0 +1,7 @@
+<div class="post-edit">
+	<%= form_for(@post) do |f| %>
+		<%= f.text_field :title, required: true %>
+		<%= f.text_area :body, rows: "5", required: true %>
+		<%= f.submit '編集' %>
+	<% end %>
+</div>

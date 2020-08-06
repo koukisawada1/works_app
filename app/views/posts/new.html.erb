@@ -1,0 +1,8 @@
+<div class="post-new">
+	<%= form_for(@post) do |f| %>
+		<%= f.text_field :title, required: true %>
+		<%= f.text_area :body, rows: "5", required: true %>
+		<%= f.submit '投稿' %>
+	<% end %>
+</div>
+	
