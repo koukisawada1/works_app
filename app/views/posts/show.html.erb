@@ -1,16 +1,41 @@
 <div class="post-show">
-	<p>詳細</p>
-	<% @post.images.each do |image| %>
-		<%= attachment_image_tag image, :image, fallback: "no_image.jpg", size: '450x300' %>
-	<% end %>
-	<p><%= @post.title %></p>
-	<p><%= simple_format(@post.body) %></p>
-	<% if user_signed_in? %>
-		<p><%= link_to "編集", edit_post_path(@post) %></p>
-		<p>写真を追加する</p>
-		<%= form_for [@post, @image] do |f| %>
-			<%= f.attachment_field :image %>
-			<%= f.submit '追加' %>
+	<div class="container">
+		<div class="theTarget">
+			<% @post.images.each do |image| %>
+				<%= attachment_image_tag image, :image, fallback: "no_image.jpg", class: "show-img" %>
+			<% end %>
+		</div>
+	</div>
+	<div class="full-screen-open">
+		<p>FULL SCREEN</p>
+	</div>
+	<div class="full-screen">
+		<div class="container">
+			<div class="theTarget">
+				<% @post.images.each do |image| %>
+					<%= attachment_image_tag image, :image, fallback: "no_image.jpg", class: "show-img" %>
+				<% end %>
+			</div>
+			<div class="full-screen-close"></div>
+		</div>
+	</div>
+	<div class="post-contents">
+		<div class="post-title">
+			<p><%= @post.title %></p>
+		</div>
+		<div class="post-text">
+			<p><%= simple_format(@post.body) %></p>
+		</div>
+		<% if user_signed_in? %>
+			<div class="post-image-edit">
+				<p><%= link_to "編集", edit_post_path(@post) %></p>
+			</div>
+			<div class="post-image-new">
+				<%= form_for [@post, @image] do |f| %>
+					<%= f.attachment_field :image %>
+					<%= f.submit '追加' %>
+				<% end %>
+			</div>
 		<% end %>
-	<% end %>
+	</div>
 </div>

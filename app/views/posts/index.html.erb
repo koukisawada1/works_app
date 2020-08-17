@@ -1,10 +1,26 @@
-<div class="post-index">
-	<p>一覧</p>
-	<% @posts.each do |post| %>
-		<%= link_to post_path(post) do %>
-			<% post.images.first(1).each do |image| %>
-				<%= attachment_image_tag image, :image, fallback: "no_image.jpg", size: '450x300' %>
-		 	<% end %>
+<div class="works-index">
+	<div class="back-btn">
+		<%= link_to "＜ BACK", :back %>
+	</div>
+    <div class="works-title ">
+        <p>Works</p>
+    </div>
+    <input type="checkbox" id="hamburger2">
+    <label for="hamburger2">
+        <span class="burger">
+            <span class="index-menu-text">Menu</span>
+        </span>
+    </label>
+    <div class="works-contents">
+		<% @posts.each do |post| %>
+			<%= link_to post_path(post) do %>
+				<% post.images.first(1).each do |image| %>
+					<%= attachment_image_tag image, :image, fallback: "no_image.jpg", class: "content" %>
+				<% end %>
+			<% end %>
 		<% end %>
-	<% end %>
+	</div>
+	<div id="page_top">
+        <a href="#">top</a>
+    </div>
 </div>

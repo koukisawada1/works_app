@@ -10,39 +10,7 @@
   </head>
 
   <body>
-        <div class="header_background">
-            <div class="header">
-                <div class="header_container">
-                    <div class="header_logo">
-                        <a href="#"></a>
-                    </div>
-                    <!-- ハンバーガーメニュー -->
-                    <input type="checkbox" id="hamburger">
-                    <label for="hamburger">
-                        <span class="burger">
-                            <span class="bar"></span>
-                            <span class="menu-nav-text">Menu</span>
-                            <span class="menu-nav-close">Close</span>
-                        </span>
-                    </label>
-                    <label class="light-dark" for="hamburger"></label>
-                    <div id="menu">
-                      <% if user_signed_in? %>
-                        <%= link_to "Home", root_path %>
-                        <%= link_to "Works", posts_path %>
-                        <%= link_to "Profile", users_path %>
-                        <%= link_to "About", about_path %>
-                        <%= link_to "Post", new_post_path %>
-                      <% else %>
-                        <%= link_to "Home", root_path %>
-                        <%= link_to "Works", posts_path %>
-                        <%= link_to "Profile", users_path %>
-                        <%= link_to "About", about_path %>
-                      <% end %>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     <%= yield %>
   </body>
 </html>

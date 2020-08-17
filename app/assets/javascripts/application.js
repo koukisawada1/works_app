@@ -12,5 +12,63 @@
 //
 //= require rails-ujs
 //= require activestorage
+//= require jquery
 //= require turbolinks
 //= require_tree .
+//= require_tree ../../../app/assets/javascripts/.
+
+$(function(){
+	// -----画像プレビュー-----
+    function readURL(input) {
+        if(input.files && input.files[0]){
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('.image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#image_image").change(function(){
+        readURL(this);
+    });
+
+    $("document").ready(function() {
+	    $(".theTarget").skippr({
+			// スライドショーの変化（"fade" or "slide"）
+			transition : 'fade',
+			// 変化にかかる時間（ミリ秒）
+			speed : 1000,
+			// easingの種類
+			easing : 'easeOutQuart',
+			// ナビゲーションの形（"block" or "bubble"）
+			navType : 'block',
+			// 子要素の種類（"div" or "img"）
+			childrenElementType : 'img',
+			// ナビゲーション矢印の表示（trueで表示）
+			arrows : true,
+			// スライドショーの自動再生（falseで自動再生なし）
+			autoPlay : false,
+			// 自動再生時のスライド切替間隔（ミリ秒）
+			autoPlayDuration : 1000,
+			// キーボードの矢印キーによるスライド送りの設定（trueで有効）
+			keyboardOnAlways : true,
+			// 1枚目のスライド表示時に戻る矢印を表示するかどうか [false]:矢印を隠さない [true]:矢印を隠す
+			hidePrevious : false
+		});
+	});
+	$('.full-screen-open').on('click',function(){
+        $('.full-screen').fadeIn();
+        return false;
+    });
+    $('.js-modal-close').on('click',function(){
+        $('..full-screen').fadeOut();
+        return false;
+    });
+});
+
+
+
+
+
+
+
