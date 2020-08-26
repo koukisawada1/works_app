@@ -60,8 +60,8 @@ $(function(){
         $('.full-screen').fadeIn();
         return false;
     });
-    $('.js-modal-close').on('click',function(){
-        $('..full-screen').fadeOut();
+    $('.full-screen-close').on('click',function(){
+        $('.full-screen').fadeOut();
         return false;
     });
 });
