@@ -1,7 +1,7 @@
 <div class="image-new">
 	<p>POST</p>
 	<%= form_for [@post, @image] do |f| %>
-		<%= attachment_image_tag @image, :image, fallback: "no_image.jpg", size: '420x300' class: "post-img" %>
+		<%= attachment_image_tag @image, :image, fallback: "no_image.jpg", size: '410x300' class: "post-img" %>
 		<%= f.attachment_field :image %>
 		<%= f.submit '追加する' %>
 	<% end %>
